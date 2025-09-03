@@ -35,7 +35,26 @@ func TestNewRestaurantMiddlewareFactory(t *testing.T) {
 	// Check that the email is masked
 	assert.Equal(t, "****", output.Data[0].Email)
 
+  // Test FindByName functionality
+	ctx = infra.DisableMasking(ctx)
+  t.Log(ctx)
+	output2, err := factory.FindRestaurantByName(ctx, "test")
+	assert.NoError(t, err)
+	assert.Len(t, output2.Data, 1)
+	//Check test resturant name matches with OutputWithMeta data
+	assert.Equal(t, "Test Restaurant", output2.Data[0].Name)
+
+   // Test FindByName functionality
+	ctx = infra.DisableAll(ctx)
+  t.Log(ctx)
+	output3, err := factory.FindRestaurantByName(ctx, "test")
+	assert.NoError(t, err)
+	assert.Len(t, output3.Data, 1)
+	//Check test resturant name matches with OutputWithMeta data
+	assert.Equal(t, "Test Restaurant", output3.Data[0].Name)
+
 	// Test FindByName with a non-existent name
+  ctx = infra.EnableAll(ctx)
 	output, err = factory.FindRestaurantByName(ctx, "nonexistent")
 	assert.Error(t, err)
 	assert.Nil(t, output.Data)

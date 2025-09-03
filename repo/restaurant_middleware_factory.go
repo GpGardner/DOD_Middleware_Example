@@ -115,7 +115,7 @@ func (f *RestaurantMiddlewareFactory) initFindByName() {
 		builder.Add(infra.Gate(infra.Logging[string, []*domain.Restaurant](loggingCallback), infra.IsTimingDisabled))
 		builder.Add(infra.Gate(infra.Timer[string, []*domain.Restaurant](), infra.IsTimingDisabled))
 		builder.Add(infra.Gate(infra.OutputResult[string](outputCallback), infra.IsOutputResultDisabled))
-		builder.Add(infra.Gate(infra.MaskOutput[string](maskingCallback), infra.IsLoggingDisabled))
+		builder.Add(infra.Gate(infra.MaskOutput[string](maskingCallback), infra.IsMaskingDisabled))
 		builder.Add(infra.Gate(infra.Retry[string, []*domain.Restaurant](retries, retryDelay), infra.IsRetryDisabled))
 
 		// Build the chain
@@ -140,7 +140,7 @@ func (f *RestaurantMiddlewareFactory) initFindByAddress() {
 		builder.Add(infra.Gate(infra.Logging[string, []*domain.Restaurant](loggingCallback), infra.IsTimingDisabled))
 		builder.Add(infra.Gate(infra.Timer[string, []*domain.Restaurant](), infra.IsTimingDisabled))
 		builder.Add(infra.Gate(infra.OutputResult[string](outputCallback), infra.IsOutputResultDisabled))
-		builder.Add(infra.Gate(infra.MaskOutput[string](maskingCallback), infra.IsLoggingDisabled))
+		builder.Add(infra.Gate(infra.MaskOutput[string](maskingCallback), infra.IsMaskingDisabled))
 		builder.Add(infra.Gate(infra.Retry[string, []*domain.Restaurant](retries, retryDelay), infra.IsRetryDisabled))
 
 		// Build the chain
@@ -163,7 +163,7 @@ func (f *RestaurantMiddlewareFactory) initFindByOwner() {
 		builder.Add(infra.Gate(infra.Logging[string, []*domain.Restaurant](loggingCallback), infra.IsTimingDisabled))
 		builder.Add(infra.Gate(infra.Timer[string, []*domain.Restaurant](), infra.IsTimingDisabled))
 		builder.Add(infra.Gate(infra.OutputResult[string](outputCallback), infra.IsOutputResultDisabled))
-		builder.Add(infra.Gate(infra.MaskOutput[string](maskingCallback), infra.IsLoggingDisabled))
+		builder.Add(infra.Gate(infra.MaskOutput[string](maskingCallback), infra.IsMaskingDisabled))
 		builder.Add(infra.Gate(infra.Retry[string, []*domain.Restaurant](retries, retryDelay), infra.IsRetryDisabled))
 		// Build the chain
 		f.FindRestaurantByOwner = builder.Build(f.bindFindByOwner())
@@ -185,7 +185,7 @@ func (f *RestaurantMiddlewareFactory) initFindByRating() {
 		builder.Add(infra.Gate(infra.Logging[int, []*domain.Restaurant](loggingCallback), infra.IsTimingDisabled))
 		builder.Add(infra.Gate(infra.Timer[int, []*domain.Restaurant](), infra.IsTimingDisabled))
 		builder.Add(infra.Gate(infra.OutputResult[int](outputCallback), infra.IsOutputResultDisabled))
-		builder.Add(infra.Gate(infra.MaskOutput[int](maskingCallback), infra.IsLoggingDisabled))
+		builder.Add(infra.Gate(infra.MaskOutput[int](maskingCallback), infra.IsMaskingDisabled))
 		builder.Add(infra.Gate(infra.Retry[int, []*domain.Restaurant](retries, retryDelay), infra.IsRetryDisabled))
 		// Build the chain
 		f.FindRestaurantByRating = builder.Build(f.bindFindByRating())
@@ -207,7 +207,7 @@ func (f *RestaurantMiddlewareFactory) initFindByMenuItem() {
 		builder.Add(infra.Gate(infra.Logging[string, []*domain.Restaurant](loggingCallback), infra.IsTimingDisabled))
 		builder.Add(infra.Gate(infra.Timer[string, []*domain.Restaurant](), infra.IsTimingDisabled))
 		builder.Add(infra.Gate(infra.OutputResult[string](outputCallback), infra.IsOutputResultDisabled))
-		builder.Add(infra.Gate(infra.MaskOutput[string](maskingCallback), infra.IsLoggingDisabled))
+		builder.Add(infra.Gate(infra.MaskOutput[string](maskingCallback), infra.IsMaskingDisabled))
 		builder.Add(infra.Gate(infra.Retry[string, []*domain.Restaurant](retries, retryDelay), infra.IsRetryDisabled))
 		// Build the chain
 		f.FindRestaurantByMenuItem = builder.Build(f.bindFindByMenuItem())
